@@ -12,7 +12,6 @@ var UserType *graphql.Object
 var nodeDefinitions = NodeDefinitions()
 
 func init() {
-
 	UserType = graphql.NewObject(graphql.ObjectConfig{
 		Name:        "User",
 		Description: "User type",
