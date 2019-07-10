@@ -5,12 +5,23 @@ import (
 	"net/http"
 
 	"github.com/YanickJair/AuthGo/graphs"
+	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
 )
 
 func main() {
+
+	schema, err := graphql.NewSchema(graphql.SchemaConfig{
+		Query:    graphs.QueryType(),
+		Mutation: graphs.MutationType(),
+	})
+
+	if err != nil {
+		panic(err)
+	}
+
 	h := handler.New(&handler.Config{
-		Schema: &graphs.Schema,
+		Schema: &schema,
 		Pretty: true,
 	})
 

@@ -1,27 +1,22 @@
 package graphs
 
-/* import (
+import (
 	"github.com/YanickJair/AuthGo/models"
 	"github.com/graphql-go/graphql"
 )
 
-// QueryType - query object
-var QueryType = graphql.NewObject(graphql.ObjectConfig{
-	Name:        "Query",
-	Description: "Query data from source",
-	Fields: graphql.Fields{
-		"rebels": &graphql.Field{
-			Type: FactionType,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				return models.GetRebels(), nil
+// QueryType - func query
+func QueryType() *graphql.Object {
+	queryType := graphql.NewObject(graphql.ObjectConfig{
+		Name: "Query",
+		Fields: graphql.Fields{
+			"users": &graphql.Field{
+				Type: UserType,
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					return models.GetUsers(), nil
+				},
 			},
 		},
-		"empire": &graphql.Field{
-			Type: FactionType,
-			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				return models.GetEmpire(), nil
-			},
-		},
-		"node": &NodeDefinitions.NodeField,
-	},
-}) */
+	})
+	return queryType
+}

@@ -1,6 +1,5 @@
 package graphs
 
-/*
 import (
 	"context"
 	"errors"
@@ -10,31 +9,27 @@ import (
 	"github.com/graphql-go/relay"
 )
 
-// NodeDefinitions - Define our node in here
-var NodeDefinitions *relay.NodeDefinitions
-
-func init() {
-	NodeDefinitions = relay.NewNodeDefinitions(relay.NodeDefinitionsConfig{
+// NodeDefinitions - fun
+func NodeDefinitions() *relay.NodeDefinitions {
+	nodeDefinitions := relay.NewNodeDefinitions(relay.NodeDefinitionsConfig{
 		IDFetcher: func(id string, info graphql.ResolveInfo,
 			ctx context.Context) (interface{}, error) {
 			resolvedID := relay.FromGlobalID(id)
 			switch resolvedID.Type {
-			case "Faction":
-				return models.GetFaction(resolvedID.ID), nil
-			case "Ship":
-				return models.GetShip(resolvedID.ID), nil
+			case "User":
+				return models.GetUsers(), nil
 			default:
-				return nil, errors.New("Unkown type")
+				return nil, errors.New("Error")
 			}
 		},
 		TypeResolve: func(p graphql.ResolveTypeParams) *graphql.Object {
 			switch p.Value.(type) {
-			case *models.Faction:
-				return FactionType
+			case *models.User:
+				return UserType
 			default:
-				return ShipType
+				return UserType
 			}
 		},
 	})
+	return nodeDefinitions
 }
-*/
